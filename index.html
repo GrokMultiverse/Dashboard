@@ -16,7 +16,11 @@
         .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(5,5,5,0.3) 0%, rgba(5,5,5,1) 95%); z-index: -1; }
         @keyframes moveBanner { 0% { transform: scale(1) translate(0, 0); } 100% { transform: scale(1.15) translate(-10px, -10px); } }
         .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 24px; padding: 2.5rem; transition: all 0.4s ease; }
+        .glass-card:hover { border-color: rgba(0, 242, 255, 0.3); transform: translateY(-5px); }
         .btn-whitelist { background: linear-gradient(90deg, #00f2ff, #0072ff); color: #000; font-weight: 800; padding: 0.8rem 2rem; border-radius: 99px; box-shadow: 0 0 15px rgba(0, 242, 255, 0.3); transition: 0.3s; cursor: pointer; }
+        .btn-status { width: 100%; padding: 0.8rem; border-radius: 12px; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; text-align: center; margin-top: 1.5rem; }
+        .status-stay-tuned { background: rgba(0, 242, 255, 0.05); color: #00f2ff; border: 1px solid rgba(0, 242, 255, 0.2); }
+        .status-locked { background: rgba(255, 255, 255, 0.03); color: #444; border: 1px solid rgba(255, 255, 255, 0.02); cursor: not-allowed; }
         .section-title { font-size: 2.5rem; font-weight: 900; letter-spacing: -1px; margin-bottom: 1.5rem; text-align: center; }
         .highlight-text { color: #00f2ff; text-shadow: 0 0 10px rgba(0, 242, 255, 0.3); }
         .hidden { display: none; }
@@ -30,6 +34,8 @@
             <span class="text-xl font-black italic text-white tracking-tighter">GROK MULTIVERSE</span>
         </div>
         <div class="flex items-center gap-6">
+            <a href="https://x.com/GrokMultiverse" target="_blank" class="hidden md:block text-white hover:text-cyan-400 transition"><i class="fa-brands fa-x-twitter text-2xl"></i></a>
+            <a href="https://t.me/grokmultiverse" target="_blank" class="hidden md:block text-white hover:text-cyan-400 transition"><i class="fa-brands fa-telegram text-2xl"></i></a>
             <button id="connect-btn" onclick="connectWallet()" class="btn-whitelist text-xs uppercase">Connect Wallet</button>
         </div>
     </nav>
@@ -60,7 +66,6 @@
                         <input type="text" id="referral-url" readonly class="bg-black/50 border border-white/10 rounded-lg px-4 py-2 w-full text-xs text-cyan-400 focus:outline-none">
                         <button onclick="copyLink()" class="bg-cyan-500 text-black px-4 py-2 rounded-lg font-bold text-xs hover:bg-cyan-400 transition">COPY</button>
                     </div>
-                    <p class="text-[10px] text-gray-500 mt-2 italic">* 50 points rewarded per valid referral.</p>
                 </div>
             </div>
         </div>
@@ -82,12 +87,49 @@
             <div class="text-center">
                 <i class="fa-solid fa-coins text-4xl text-cyan-400 mb-6"></i>
                 <h4 class="text-xl font-bold mb-3 italic uppercase">03. Reward Claims</h4>
-                <p class="text-gray-500 text-sm">Ecosystem airdrops for active participants and traders.</p>
+                <p class="text-gray-500 text-sm">Airdrops for active participants and traders.</p>
             </div>
         </div>
     </section>
 
+    <main class="max-w-7xl mx-auto px-6 py-24">
+        <h2 class="section-title italic mb-12">SYSTEM <span class="highlight-text">ROADMAP</span></h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="glass-card">
+                <div class="text-xs font-black text-cyan-400 mb-2 uppercase tracking-tighter">Phase 01</div>
+                <h3 class="text-2xl font-bold mb-3 text-white italic">Testnet NFT Mint</h3>
+                <p class="text-gray-400 text-sm">Mandatory to unlock Mainnet minting eligibility.</p>
+                <div class="btn-status status-stay-tuned">STAY TUNED</div>
+            </div>
+            <div class="glass-card opacity-60">
+                <div class="text-xs font-black text-gray-600 mb-2 uppercase tracking-tighter">Phase 02</div>
+                <h3 class="text-2xl font-bold mb-3 italic text-white">Mainnet Launch</h3>
+                <div class="btn-status status-locked">LOCKED 🔒</div>
+            </div>
+            <div class="glass-card opacity-60">
+                <div class="text-xs font-black text-gray-600 mb-2 uppercase tracking-tighter">Phase 03</div>
+                <h3 class="text-2xl font-bold mb-3 italic text-white">Trading & Volume</h3>
+                <div class="btn-status status-locked">LOCKED 🔒</div>
+            </div>
+            <div class="glass-card opacity-40">
+                <div class="text-xs font-black text-gray-600 mb-2 uppercase tracking-tighter">Phase 04</div>
+                <h3 class="text-2xl font-bold mb-3 italic text-white">Ecosystem Audit</h3>
+                <div class="btn-status status-locked">LOCKED 🔒</div>
+            </div>
+            <div class="glass-card opacity-40 border-dashed">
+                <div class="text-xs font-black text-gray-600 mb-2 uppercase tracking-tighter">Phase 05</div>
+                <h3 class="text-2xl font-bold mb-3 italic text-white">Reward Phase</h3>
+                <div class="btn-status status-locked">LOCKED 🔒</div>
+            </div>
+        </div>
+    </main>
+
     <footer class="py-20 border-t border-white/5 text-center bg-[#030303]">
+        <div class="flex justify-center gap-10 mb-8 text-3xl">
+            <a href="https://x.com/GrokMultiverse" target="_blank" class="text-gray-500 hover:text-cyan-400 transition"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://t.me/grokmultiverse" target="_blank" class="text-gray-500 hover:text-cyan-400 transition"><i class="fa-brands fa-telegram"></i></a>
+            <a href="https://github.com/GrokMultiverse" target="_blank" class="text-gray-500 hover:text-cyan-400 transition"><i class="fa-brands fa-github"></i></a>
+        </div>
         <p class="text-gray-600 text-[10px] tracking-[0.3em] uppercase">© 2025 GrokMultiverse | Solana Ecosystem</p>
     </footer>
 
@@ -102,40 +144,25 @@
                     const response = await window.solana.connect();
                     walletAddress = response.publicKey.toString();
                     document.getElementById('connect-btn').innerText = walletAddress.slice(0, 4) + "..." + walletAddress.slice(-4);
-                    setupReferralUI();
-                } catch (err) {
-                    console.error("Connection error:", err);
-                }
-            } else {
-                alert("Phantom Wallet not detected.");
-            }
-        }
-
-        function setupReferralUI() {
-            document.getElementById('referral-section').classList.remove('hidden');
-            const refCode = walletAddress.slice(-6).toUpperCase();
-            const refLink = `https://grokmultiverse.github.io/Dashboard/?ref=${refCode}`;
-            document.getElementById('referral-url').value = refLink;
+                    document.getElementById('referral-section').classList.remove('hidden');
+                    const refCode = walletAddress.slice(-6).toUpperCase();
+                    document.getElementById('referral-url').value = `https://grokmultiverse.github.io/Dashboard/?ref=${refCode}`;
+                } catch (err) { console.error(err); }
+            } else { alert("Phantom Wallet not found."); }
         }
 
         async function registerOnChain() {
-            if (!walletAddress) return alert("Connect wallet to proceed.");
-            
-            const urlParams = new URLSearchParams(window.location.search);
-            const referrer = urlParams.get('ref');
-            
-            console.log("Registering with Program ID:", programId.toBase58());
-            if(referrer) console.log("Referrer ID:", referrer);
-
-            alert("Submitting Whitelist Registration to Solana Devnet...");
+            if (!walletAddress) return alert("Connect wallet first.");
+            alert("Submitting Whitelist Registration to Program ID: DzsNMUq...");
         }
 
         function copyLink() {
             const copyText = document.getElementById("referral-url");
             copyText.select();
             navigator.clipboard.writeText(copyText.value);
-            alert("Referral Link Copied!");
+            alert("Link Copied!");
         }
     </script>
 </body>
-</html>
+    </html>
+    
