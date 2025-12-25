@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrokMultiverse | Official Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
+        
+        body { 
+            background-color: #050505; 
+            color: #ffffff; 
+            font-family: 'Inter', sans-serif; 
+            overflow-x: hidden; 
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.75), rgba(5,5,5,1)), 
+                        url('https://raw.githubusercontent.com/GrokMultiverse/asset-s/d3ae39ad61ae3d9045bbcbe94b87cb04932c56ab/banner.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 242, 255, 0.1);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(0, 242, 255, 0.3);
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .neon-glow {
+            text-shadow: 0 0 15px rgba(0, 242, 255, 0.4);
+        }
+
+        .btn-locked {
+            background: rgba(255, 255, 255, 0.05);
+            color: #555;
+            cursor: not-allowed;
+            width: 100%;
+            padding: 1rem;
+            border-radius: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .phase-badge {
+            font-size: 0.7rem;
+            font-weight: 900;
+            padding: 4px 12px;
+            border-radius: 99px;
+            background: rgba(0, 242, 255, 0.1);
+            color: #00f2ff;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .step-inactive {
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="flex justify-between items-center p-6 max-w-7xl mx-auto">
+        <div class="flex items-center gap-4">
+            <img src="https://raw.githubusercontent.com/GrokMultiverse/asset-s/d3ae39ad61ae3d9045bbcbe94b87cb04932c56ab/logo.png" alt="Logo" class="w-10 h-10 rounded-full">
+            <span class="text-xl font-black tracking-tighter neon-glow italic">GROK MULTIVERSE</span>
+        </div>
+        <div class="flex gap-6 text-xl text-gray-400">
+            <a href="#" class="hover:text-cyan-400"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" class="hover:text-cyan-400"><i class="fab fa-telegram"></i></a>
+            <a href="https://github.com/GrokMultiverse" class="hover:text-cyan-400"><i class="fab fa-github"></i></a>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div>
+            <h1 class="text-5xl md:text-7xl font-black mb-4 tracking-tight">SYSTEM INITIALIZING</h1>
+            <p class="text-cyan-500 font-light tracking-[0.4em] uppercase text-sm md:text-base">The Multiverse Portal is Preparing for Launch</p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-24">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <div class="glass-card">
+                <div class="phase-badge">PHASE 01</div>
+                <h3 class="text-2xl font-bold mb-3">Testnet NFT Mint</h3>
+                <p class="text-gray-500 text-sm mb-8 leading-relaxed">
+                    The foundational gate. Participation in the Testnet phase is the primary gateway for Mainnet eligibility and future rewards.
+                </p>
+                <button class="btn-locked">STAY TUNED</button>
+            </div>
+
+            <div class="glass-card step-inactive">
+                <div class="phase-badge" style="color: #666; background: #222;">PHASE 02</div>
+                <h3 class="text-2xl font-bold mb-3 text-gray-400">Mainnet Launch</h3>
+                <p class="text-gray-600 text-sm mb-8 leading-relaxed">
+                    Exclusive collection launch for whitelisted early adopters and Testnet NFT holders on the Solana Mainnet.
+                </p>
+                <button class="btn-locked">LOCKED</button>
+            </div>
+
+            <div class="glass-card step-inactive">
+                <div class="phase-badge" style="color: #666; background: #222;">PHASE 03</div>
+                <h3 class="text-2xl font-bold mb-3 text-gray-400">Marketplace Listing</h3>
+                <p class="text-gray-600 text-sm mb-8 leading-relaxed">
+                    Official trading goes live on Magic Eden and Tensor. Implementing secondary sale reward systems for holders.
+                </p>
+                <button class="btn-locked">LOCKED</button>
+            </div>
+
+            <div class="glass-card step-inactive">
+                <div class="phase-badge" style="color: #666; background: #222;">PHASE 04</div>
+                <h3 class="text-2xl font-bold mb-3 text-gray-400">Tokenomics Reveal</h3>
+                <p class="text-gray-600 text-sm mb-8 leading-relaxed">
+                    Detailed breakdown of $GROK supply, distribution plans, and sustainable ecosystem growth protocols.
+                </p>
+                <button class="btn-locked">UPCOMING</button>
+            </div>
+
+            <div class="glass-card step-inactive border-dashed">
+                <div class="phase-badge" style="color: #666; background: #222;">PHASE 05</div>
+                <h3 class="text-2xl font-bold mb-3 text-gray-400">Airdrop Distribution</h3>
+                <p class="text-gray-600 text-sm mb-8 leading-relaxed">
+                    Rewarding the community. Allocation based on early interaction and contribution to the GrokMultiverse.
+                </p>
+                <button class="btn-locked italic">HIDDEN</button>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="py-20 border-t border-white/5 text-center">
+        <p class="text-gray-600 text-xs tracking-widest uppercase">© 2025 GrokMultiverse Ecosystem | Built on Solana</p>
+    </footer>
+
+</body>
+  </html>
+  
