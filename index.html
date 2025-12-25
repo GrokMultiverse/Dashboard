@@ -5,100 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GrokMultiverse | Official Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
-        
-        body { 
-            background-color: #050505; 
-            color: #ffffff; 
-            font-family: 'Inter', sans-serif; 
-            overflow-x: hidden; 
-        }
-
+        body { background-color: #050505; color: #ffffff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
         .hero-section {
             background: linear-gradient(rgba(0,0,0,0.8), rgba(5,5,5,1)), 
                         url('https://raw.githubusercontent.com/GrokMultiverse/asset-s/d3ae39ad61ae3d9045bbcbe94b87cb04932c56ab/banner.jpg');
-            background-size: cover;
-            background-position: center;
-            height: 60vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
+            background-size: cover; background-position: center; height: 60vh;
+            display: flex; align-items: center; justify-content: center; text-align: center;
         }
-
         .glass-card {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 24px;
-            padding: 2.5rem;
-            transition: all 0.4s ease;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 24px;
+            padding: 2.5rem; transition: all 0.4s ease; height: 100%;
+            display: flex; flex-direction: column; justify-content: space-between;
         }
-
-        .glass-card:hover {
-            border-color: rgba(0, 242, 255, 0.2);
-            transform: translateY(-5px);
-        }
-
         .btn-whitelist {
-            background: linear-gradient(90deg, #00f2ff, #0072ff);
-            color: #000;
-            font-weight: 800;
-            padding: 0.7rem 1.8rem;
-            border-radius: 99px;
-            box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
-            transition: 0.3s;
-            display: inline-block;
+            background: linear-gradient(90deg, #00f2ff, #0072ff); color: #000;
+            font-weight: 800; padding: 0.7rem 1.8rem; border-radius: 99px;
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.3); transition: 0.3s; display: inline-block;
         }
-
-        .btn-whitelist:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(0, 242, 255, 0.6);
-        }
-
-        .btn-status {
-            width: 100%;
-            padding: 0.8rem;
-            border-radius: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            text-align: center;
-        }
-
-        .status-stay-tuned {
-            background: rgba(0, 242, 255, 0.05);
-            color: #00f2ff;
-            border: 1px solid rgba(0, 242, 255, 0.2);
-        }
-
-        .status-locked {
-            background: rgba(255, 255, 255, 0.03);
-            color: #444;
-            border: 1px solid rgba(255, 255, 255, 0.02);
-            cursor: not-allowed;
-        }
-
-        .phase-badge {
-            font-size: 0.65rem;
-            font-weight: 900;
-            padding: 4px 12px;
-            border-radius: 99px;
-            background: rgba(255, 255, 255, 0.05);
-            color: #888;
-            margin-bottom: 1rem;
-            display: inline-block;
-        }
-
-        .neon-text {
-            text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
-        }
+        .btn-whitelist:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(0, 242, 255, 0.6); }
+        .btn-status { width: 100%; padding: 0.8rem; border-radius: 12px; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; text-align: center; }
+        .status-stay-tuned { background: rgba(0, 242, 255, 0.05); color: #00f2ff; border: 1px solid rgba(0, 242, 255, 0.2); }
+        .status-locked { background: rgba(255, 255, 255, 0.03); color: #444; border: 1px solid rgba(255, 255, 255, 0.02); cursor: not-allowed; }
+        .phase-badge { font-size: 0.65rem; font-weight: 900; padding: 4px 12px; border-radius: 99px; background: rgba(255, 255, 255, 0.05); color: #888; margin-bottom: 1rem; display: inline-block; }
     </style>
 </head>
 <body>
@@ -106,20 +38,24 @@
     <nav class="flex justify-between items-center p-6 max-w-7xl mx-auto sticky top-0 z-50 bg-[#050505]/80 backdrop-blur-md">
         <div class="flex items-center gap-4">
             <img src="https://raw.githubusercontent.com/GrokMultiverse/asset-s/d3ae39ad61ae3d9045bbcbe94b87cb04932c56ab/logo.png" alt="Logo" class="w-10 h-10 rounded-full border border-cyan-500/20">
-            <span class="text-xl font-black tracking-tighter italic text-white neon-text">GROK MULTIVERSE</span>
+            <span class="text-xl font-black tracking-tighter italic text-white">GROK MULTIVERSE</span>
         </div>
         <div class="hidden md:flex items-center gap-6">
-            <a href="https://x.com/GrokMultiverse" target="_blank" class="text-gray-400 hover:text-white transition"><i class="fab fa-x-twitter text-xl"></i></a>
-            <a href="https://t.me/grokmultiverse" target="_blank" class="text-gray-400 hover:text-white transition"><i class="fab fa-telegram text-xl"></i></a>
+            <a href="https://x.com/GrokMultiverse" target="_blank" class="text-white hover:text-cyan-400 transition">
+                <i class="fa-brands fa-x-twitter text-2xl"></i>
+            </a>
+            <a href="https://t.me/grokmultiverse" target="_blank" class="text-white hover:text-cyan-400 transition">
+                <i class="fa-brands fa-telegram text-2xl"></i>
+            </a>
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSeMP4zBzIFqwZsBhi1gu-ozNOLugz67n-ZjJoHn-L56AGrf5Q/viewform?usp=sf_link" target="_blank" class="btn-whitelist text-xs">JOIN WHITELIST</a>
         </div>
     </nav>
 
     <header class="hero-section">
         <div class="px-6">
-            <h1 class="text-5xl md:text-8xl font-black mb-6 tracking-tight">PHASE 01 COMMENCING</h1>
+            <h1 class="text-5xl md:text-8xl font-black mb-6 tracking-tight">THE GATES ARE OPEN</h1>
             <p class="text-gray-400 max-w-xl mx-auto mb-8 text-sm md:text-base leading-relaxed">
-                Follow our socials and submit your SOL address via the form to secure your spot in the Multiverse.
+                Follow us on X and Telegram, then submit your SOL address below to secure your Phase 01 spot.
             </p>
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSeMP4zBzIFqwZsBhi1gu-ozNOLugz67n-ZjJoHn-L56AGrf5Q/viewform?usp=sf_link" target="_blank" class="btn-whitelist uppercase tracking-widest">Register Whitelist</a>
         </div>
@@ -127,74 +63,45 @@
 
     <main class="max-w-7xl mx-auto px-6 py-24">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
             <div class="glass-card">
                 <div>
                     <div class="phase-badge" style="color: #00f2ff; background: rgba(0, 242, 255, 0.1);">PHASE 01</div>
                     <h3 class="text-2xl font-bold mb-3">Testnet NFT Mint</h3>
-                    <p class="text-gray-400 text-sm mb-8 leading-relaxed">
-                        The primary gate. Testnet participation is the core requirement for mainnet eligibility and initial ecosystem rewards.
-                    </p>
+                    <p class="text-gray-400 text-sm mb-8 leading-relaxed">Mandatory gateway for early supporters to secure future eligibility.</p>
                 </div>
-                <div class="btn-status status-stay-tuned uppercase tracking-widest">Stay Tuned</div>
+                <div class="btn-status status-stay-tuned">Stay Tuned</div>
             </div>
-
+            
             <div class="glass-card opacity-60">
-                <div>
-                    <div class="phase-badge">PHASE 02</div>
-                    <h3 class="text-2xl font-bold mb-3 text-gray-400">Mainnet Launch</h3>
-                    <p class="text-gray-500 text-sm mb-8 leading-relaxed">
-                        Official deployment of the GrokMultiverse premium collection. Exclusive to whitelisted pioneers.
-                    </p>
-                </div>
+                <div><div class="phase-badge">PHASE 02</div><h3 class="text-2xl font-bold mb-3">Mainnet Launch</h3><p class="text-gray-500 text-sm mb-8">Exclusive access for whitelisted pioneers.</p></div>
                 <div class="btn-status status-locked">LOCKED 🔒</div>
             </div>
 
             <div class="glass-card opacity-60">
-                <div>
-                    <div class="phase-badge">PHASE 03</div>
-                    <h3 class="text-2xl font-bold mb-3 text-gray-400">Market Listing</h3>
-                    <p class="text-gray-500 text-sm mb-8 leading-relaxed">
-                        Secondary trading enabled on Magic Eden and Tensor. Volume-based staking rewards initialized.
-                    </p>
-                </div>
+                <div><div class="phase-badge">PHASE 03</div><h3 class="text-2xl font-bold mb-3">Market Listing</h3><p class="text-gray-500 text-sm mb-8">Trading live on Magic Eden and Tensor.</p></div>
                 <div class="btn-status status-locked">LOCKED 🔒</div>
             </div>
 
             <div class="glass-card opacity-40">
-                <div>
-                    <div class="phase-badge">PHASE 04</div>
-                    <h3 class="text-2xl font-bold mb-3 text-gray-500">Tokenomics</h3>
-                    <p class="text-gray-600 text-sm mb-8 leading-relaxed">
-                        Detailed audit and launch of the $GROK utility token. Governance and liquidity farming rewards.
-                    </p>
-                </div>
+                <div><div class="phase-badge">PHASE 04</div><h3 class="text-2xl font-bold mb-3">Tokenomics</h3><p class="text-gray-600 text-sm mb-8">Detailed $GROK utility and distribution audit.</p></div>
                 <div class="btn-status status-locked">LOCKED 🔒</div>
             </div>
 
             <div class="glass-card opacity-40 border-dashed">
-                <div>
-                    <div class="phase-badge">PHASE 05</div>
-                    <h3 class="text-2xl font-bold mb-3 text-gray-500">Airdrop Claim</h3>
-                    <p class="text-gray-600 text-sm mb-8 leading-relaxed">
-                        Rewarding our earliest believers. Final $GROK distribution based on cross-phase engagement.
-                    </p>
-                </div>
+                <div><div class="phase-badge">PHASE 05</div><h3 class="text-2xl font-bold mb-3">Airdrop Claim</h3><p class="text-gray-600 text-sm mb-8">Rewarding loyalty based on engagement.</p></div>
                 <div class="btn-status status-locked">LOCKED 🔒</div>
             </div>
-
         </div>
     </main>
 
     <footer class="py-20 border-t border-white/5 text-center">
-        <div class="flex justify-center gap-10 mb-8 text-3xl text-gray-500">
-            <a href="https://x.com/GrokMultiverse" target="_blank" class="hover:text-cyan-400 transition transform hover:scale-110"><i class="fab fa-x-twitter"></i></a>
-            <a href="https://t.me/grokmultiverse" target="_blank" class="hover:text-cyan-400 transition transform hover:scale-110"><i class="fab fa-telegram"></i></a>
-            <a href="https://github.com/GrokMultiverse" target="_blank" class="hover:text-cyan-400 transition transform hover:scale-110"><i class="fab fa-github"></i></a>
+        <div class="flex justify-center gap-10 mb-8 text-3xl">
+            <a href="https://x.com/GrokMultiverse" target="_blank" class="text-gray-400 hover:text-cyan-400 transition"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://t.me/grokmultiverse" target="_blank" class="text-gray-400 hover:text-cyan-400 transition"><i class="fa-brands fa-telegram"></i></a>
+            <a href="https://github.com/GrokMultiverse" target="_blank" class="text-gray-400 hover:text-cyan-400 transition"><i class="fa-brands fa-github"></i></a>
         </div>
-        <p class="text-gray-600 text-xs tracking-widest uppercase italic">© 2025 GrokMultiverse | Community-Driven Ecosystem on Solana</p>
+        <p class="text-gray-600 text-xs tracking-widest uppercase">© 2025 GrokMultiverse | Deployed on Solana</p>
     </footer>
 
 </body>
-                </html>
-                
+</html>
