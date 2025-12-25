@@ -24,6 +24,10 @@
         .section-title { font-size: 2.5rem; font-weight: 900; letter-spacing: -1px; margin-bottom: 1.5rem; text-align: center; }
         .highlight-text { color: #00f2ff; text-shadow: 0 0 10px rgba(0, 242, 255, 0.3); }
         .hidden { display: none; }
+        
+        /* New Task Styling */
+        .task-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; padding: 1.2rem; display: flex; justify-content: space-between; align-items: center; transition: 0.3s; }
+        .task-card:hover { background: rgba(0, 242, 255, 0.05); border-color: rgba(0, 242, 255, 0.2); }
     </style>
 </head>
 <body>
@@ -56,17 +60,55 @@
                 <div>
                     <h3 class="text-2xl font-bold italic mb-2">PIONEER <span class="text-cyan-400">STATUS</span></h3>
                     <div class="bg-cyan-500/10 p-4 rounded-xl border border-cyan-500/20 inline-block">
-                        <p class="text-xs text-gray-400 uppercase">Referral Points</p>
+                        <p class="text-xs text-gray-400 uppercase">Total Points</p>
                         <p id="user-points" class="text-4xl font-black text-white">0</p>
                     </div>
                 </div>
                 <div>
-                    <p class="text-sm text-gray-400 mb-2 uppercase">Your Referral Link</p>
+                    <p class="text-sm text-gray-400 mb-2 uppercase">Your Referral Link (+50 pts)</p>
                     <div class="flex gap-2">
                         <input type="text" id="referral-url" readonly class="bg-black/50 border border-white/10 rounded-lg px-4 py-2 w-full text-xs text-cyan-400 focus:outline-none">
                         <button onclick="copyLink()" class="bg-cyan-500 text-black px-4 py-2 rounded-lg font-bold text-xs hover:bg-cyan-400 transition">COPY</button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="task-dashboard" class="max-w-5xl mx-auto px-6 py-12">
+        <h2 class="section-title italic mb-8 uppercase text-left">Ecosystem <span class="highlight-text">Quests</span></h2>
+        <div class="grid grid-cols-1 gap-4">
+            <div class="task-card">
+                <div class="flex items-center gap-4">
+                    <i class="fa-brands fa-x-twitter text-2xl text-cyan-400"></i>
+                    <div>
+                        <h4 class="font-bold uppercase italic text-sm text-white">Follow on X</h4>
+                        <p class="text-[10px] text-gray-500 tracking-widest">+100 POINTS</p>
+                    </div>
+                </div>
+                <button onclick="completeTask('twitter', 100, 'https://x.com/GrokMultiverse')" id="task-twitter" class="bg-white/10 hover:bg-cyan-400 hover:text-black px-6 py-2 rounded-full text-[10px] font-black transition">START</button>
+            </div>
+
+            <div class="task-card">
+                <div class="flex items-center gap-4">
+                    <i class="fa-brands fa-telegram text-2xl text-cyan-400"></i>
+                    <div>
+                        <h4 class="font-bold uppercase italic text-sm text-white">Join Telegram</h4>
+                        <p class="text-[10px] text-gray-500 tracking-widest">+100 POINTS</p>
+                    </div>
+                </div>
+                <button onclick="completeTask('telegram', 100, 'https://t.me/grokmultiverse')" id="task-telegram" class="bg-white/10 hover:bg-cyan-400 hover:text-black px-6 py-2 rounded-full text-[10px] font-black transition">START</button>
+            </div>
+
+            <div class="task-card">
+                <div class="flex items-center gap-4">
+                    <i class="fa-solid fa-user-plus text-2xl text-cyan-400"></i>
+                    <div>
+                        <h4 class="font-bold uppercase italic text-sm text-white">Pioneer Registration</h4>
+                        <p class="text-[10px] text-gray-500 tracking-widest">+200 POINTS</p>
+                    </div>
+                </div>
+                <button onclick="registerOnChain()" id="task-reg" class="bg-white/10 hover:bg-cyan-400 hover:text-black px-6 py-2 rounded-full text-[10px] font-black transition">CLAIM</button>
             </div>
         </div>
     </section>
@@ -89,6 +131,33 @@
                 <h4 class="text-xl font-bold mb-3 italic uppercase">03. Reward Claims</h4>
                 <p class="text-gray-500 text-sm">Airdrops for active participants and traders.</p>
             </div>
+        </div>
+    </section>
+
+    <section class="max-w-5xl mx-auto px-6 py-24">
+        <h2 class="section-title italic mb-12 uppercase">Global <span class="highlight-text">Leaderboard</span></h2>
+        <div class="glass-card p-0 overflow-hidden border-white/5">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-white/5 text-[10px] text-gray-500 uppercase tracking-[0.2em]">
+                        <th class="p-6">Rank</th>
+                        <th class="p-6">Pioneer Address</th>
+                        <th class="p-6 text-right">Points</th>
+                    </tr>
+                </thead>
+                <tbody id="leaderboard-data">
+                    <tr class="border-t border-white/5 hover:bg-white/[0.02] transition">
+                        <td class="p-6 font-black italic text-cyan-400">#1</td>
+                        <td class="p-6 font-mono text-xs">8LMW...K9p2</td>
+                        <td class="p-6 text-right font-bold">12,450</td>
+                    </tr>
+                    <tr class="border-t border-white/5 hover:bg-white/[0.02] transition">
+                        <td class="p-6 font-black italic text-gray-500">#2</td>
+                        <td class="p-6 font-mono text-xs">DzsN...gRXE</td>
+                        <td class="p-6 text-right font-bold">9,200</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </section>
 
@@ -126,9 +195,9 @@
 
     <footer class="py-20 border-t border-white/5 text-center bg-[#030303]">
         <div class="flex justify-center gap-10 mb-8 text-3xl">
-            <a href="https://x.com/GrokMultiverse" target="_blank" class="text-gray-500 hover:text-cyan-400 transition"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="https://t.me/grokmultiverse" target="_blank" class="text-gray-500 hover:text-cyan-400 transition"><i class="fa-brands fa-telegram"></i></a>
-            <a href="https://github.com/GrokMultiverse" target="_blank" class="text-gray-500 hover:text-cyan-400 transition"><i class="fa-brands fa-github"></i></a>
+            <a href="https://x.com/GrokMultiverse" target="_blank" class="text-gray-500 hover:text-cyan-400 transition transform hover:scale-110"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://t.me/grokmultiverse" target="_blank" class="text-gray-500 hover:text-cyan-400 transition transform hover:scale-110"><i class="fa-brands fa-telegram"></i></a>
+            <a href="https://github.com/GrokMultiverse" target="_blank" class="text-gray-500 hover:text-cyan-400 transition transform hover:scale-110"><i class="fa-brands fa-github"></i></a>
         </div>
         <p class="text-gray-600 text-[10px] tracking-[0.3em] uppercase">© 2025 GrokMultiverse | Solana Ecosystem</p>
     </footer>
@@ -137,6 +206,7 @@
         const programId = new solanaWeb3.PublicKey("DzsNMUqVhpyj6rznbph4jjDKTshPaKdWVHYHDBETYgXE");
         const network = "https://api.devnet.solana.com";
         let walletAddress = null;
+        let userPoints = 0;
 
         async function connectWallet() {
             if (window.solana && window.solana.isPhantom) {
@@ -145,15 +215,67 @@
                     walletAddress = response.publicKey.toString();
                     document.getElementById('connect-btn').innerText = walletAddress.slice(0, 4) + "..." + walletAddress.slice(-4);
                     document.getElementById('referral-section').classList.remove('hidden');
+                    
                     const refCode = walletAddress.slice(-6).toUpperCase();
                     document.getElementById('referral-url').value = `https://grokmultiverse.github.io/Dashboard/?ref=${refCode}`;
+                    
+                    loadUserData();
                 } catch (err) { console.error(err); }
             } else { alert("Phantom Wallet not found."); }
         }
 
+        // Points Logic
+        function loadUserData() {
+            const savedPoints = localStorage.getItem('grok_points_' + walletAddress);
+            userPoints = savedPoints ? parseInt(savedPoints) : 0;
+            document.getElementById('user-points').innerText = userPoints.toLocaleString();
+            updateTaskButtons();
+        }
+
+        function completeTask(task, reward, link) {
+            if (!walletAddress) return alert("Connect Wallet first!");
+            window.open(link, '_blank');
+            
+            if (!localStorage.getItem(`task_${task}_${walletAddress}`)) {
+                userPoints += reward;
+                localStorage.setItem(`task_${task}_${walletAddress}`, 'true');
+                localStorage.setItem('grok_points_' + walletAddress, userPoints);
+                document.getElementById('user-points').innerText = userPoints.toLocaleString();
+                updateTaskButtons();
+            }
+        }
+
+        function updateTaskButtons() {
+            if (localStorage.getItem(`task_twitter_${walletAddress}`)) {
+                document.getElementById('task-twitter').innerText = "DONE";
+                document.getElementById('task-twitter').className = "text-cyan-400 text-[10px] font-black";
+                document.getElementById('task-twitter').onclick = null;
+            }
+            if (localStorage.getItem(`task_telegram_${walletAddress}`)) {
+                document.getElementById('task-telegram').innerText = "DONE";
+                document.getElementById('task-telegram').className = "text-cyan-400 text-[10px] font-black";
+                document.getElementById('task-telegram').onclick = null;
+            }
+            if (localStorage.getItem(`task_reg_${walletAddress}`)) {
+                document.getElementById('task-reg').innerText = "CLAIMED";
+                document.getElementById('task-reg').className = "text-cyan-400 text-[10px] font-black";
+                document.getElementById('task-reg').onclick = null;
+            }
+        }
+
         async function registerOnChain() {
             if (!walletAddress) return alert("Connect wallet first.");
+            // Actual smart contract call would go here
             alert("Submitting Whitelist Registration to Program ID: DzsNMUq...");
+            
+            // For now, simulate claiming registration points
+            if (!localStorage.getItem(`task_reg_${walletAddress}`)) {
+                userPoints += 200;
+                localStorage.setItem(`task_reg_${walletAddress}`, 'true');
+                localStorage.setItem('grok_points_' + walletAddress, userPoints);
+                document.getElementById('user-points').innerText = userPoints.toLocaleString();
+                updateTaskButtons();
+            }
         }
 
         function copyLink() {
