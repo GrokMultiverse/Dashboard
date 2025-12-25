@@ -24,10 +24,7 @@
         .section-title { font-size: 2.5rem; font-weight: 900; letter-spacing: -1px; margin-bottom: 1.5rem; text-align: center; }
         .highlight-text { color: #00f2ff; text-shadow: 0 0 10px rgba(0, 242, 255, 0.3); }
         .hidden { display: none; }
-        
-        /* New Task Styling */
         .task-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; padding: 1.2rem; display: flex; justify-content: space-between; align-items: center; transition: 0.3s; }
-        .task-card:hover { background: rgba(0, 242, 255, 0.05); border-color: rgba(0, 242, 255, 0.2); }
     </style>
 </head>
 <body>
@@ -50,7 +47,7 @@
         <div class="px-6 relative z-10">
             <h1 class="text-6xl md:text-8xl font-black mb-6 tracking-tighter italic uppercase">Unlock the Portal</h1>
             <p class="text-gray-300 max-w-2xl mx-auto mb-10 text-sm md:text-lg font-light tracking-wide uppercase">Your Testnet status is the only key to the Mainnet Multiverse.</p>
-            <button onclick="registerOnChain()" class="btn-whitelist uppercase tracking-widest px-12">Register for Whitelist</button>
+            <button id="hero-register-btn" onclick="registerOnChain()" class="btn-whitelist uppercase tracking-widest px-12">Register for Whitelist</button>
         </div>
     </div>
 
@@ -65,7 +62,7 @@
                     </div>
                 </div>
                 <div>
-                    <p class="text-sm text-gray-400 mb-2 uppercase">Your Referral Link (+50 pts)</p>
+                    <p class="text-sm text-gray-400 mb-2 uppercase">Your Referral Link (+50 pts per refer)</p>
                     <div class="flex gap-2">
                         <input type="text" id="referral-url" readonly class="bg-black/50 border border-white/10 rounded-lg px-4 py-2 w-full text-xs text-cyan-400 focus:outline-none">
                         <button onclick="copyLink()" class="bg-cyan-500 text-black px-4 py-2 rounded-lg font-bold text-xs hover:bg-cyan-400 transition">COPY</button>
@@ -79,36 +76,12 @@
         <h2 class="section-title italic mb-8 uppercase text-left">Ecosystem <span class="highlight-text">Quests</span></h2>
         <div class="grid grid-cols-1 gap-4">
             <div class="task-card">
-                <div class="flex items-center gap-4">
-                    <i class="fa-brands fa-x-twitter text-2xl text-cyan-400"></i>
-                    <div>
-                        <h4 class="font-bold uppercase italic text-sm text-white">Follow on X</h4>
-                        <p class="text-[10px] text-gray-500 tracking-widest">+100 POINTS</p>
-                    </div>
-                </div>
+                <div class="flex items-center gap-4"><i class="fa-brands fa-x-twitter text-2xl text-cyan-400"></i><div><h4 class="font-bold uppercase italic text-sm">Follow on X</h4><p class="text-[10px] text-gray-500">+100 POINTS</p></div></div>
                 <button onclick="completeTask('twitter', 100, 'https://x.com/GrokMultiverse')" id="task-twitter" class="bg-white/10 hover:bg-cyan-400 hover:text-black px-6 py-2 rounded-full text-[10px] font-black transition">START</button>
             </div>
-
             <div class="task-card">
-                <div class="flex items-center gap-4">
-                    <i class="fa-brands fa-telegram text-2xl text-cyan-400"></i>
-                    <div>
-                        <h4 class="font-bold uppercase italic text-sm text-white">Join Telegram</h4>
-                        <p class="text-[10px] text-gray-500 tracking-widest">+100 POINTS</p>
-                    </div>
-                </div>
+                <div class="flex items-center gap-4"><i class="fa-brands fa-telegram text-2xl text-cyan-400"></i><div><h4 class="font-bold uppercase italic text-sm">Join Telegram</h4><p class="text-[10px] text-gray-500">+100 POINTS</p></div></div>
                 <button onclick="completeTask('telegram', 100, 'https://t.me/grokmultiverse')" id="task-telegram" class="bg-white/10 hover:bg-cyan-400 hover:text-black px-6 py-2 rounded-full text-[10px] font-black transition">START</button>
-            </div>
-
-            <div class="task-card">
-                <div class="flex items-center gap-4">
-                    <i class="fa-solid fa-user-plus text-2xl text-cyan-400"></i>
-                    <div>
-                        <h4 class="font-bold uppercase italic text-sm text-white">Pioneer Registration</h4>
-                        <p class="text-[10px] text-gray-500 tracking-widest">+200 POINTS</p>
-                    </div>
-                </div>
-                <button onclick="registerOnChain()" id="task-reg" class="bg-white/10 hover:bg-cyan-400 hover:text-black px-6 py-2 rounded-full text-[10px] font-black transition">CLAIM</button>
             </div>
         </div>
     </section>
@@ -116,26 +89,14 @@
     <section class="max-w-5xl mx-auto px-6 py-24 border-b border-white/5">
         <h2 class="section-title italic">ECOSYSTEM <span class="highlight-text">LOGIC</span></h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div class="text-center">
-                <i class="fa-solid fa-key text-4xl text-cyan-400 mb-6"></i>
-                <h4 class="text-xl font-bold mb-3 italic uppercase">01. Testnet Key</h4>
-                <p class="text-gray-500 text-sm">Mint Testnet NFT as your non-transferable access key.</p>
-            </div>
-            <div class="text-center">
-                <i class="fa-solid fa-rocket text-4xl text-cyan-400 mb-6"></i>
-                <h4 class="text-xl font-bold mb-3 italic uppercase">02. Mainnet Mint</h4>
-                <p class="text-gray-500 text-sm">Exclusive permission for verified Testnet NFT holders.</p>
-            </div>
-            <div class="text-center">
-                <i class="fa-solid fa-coins text-4xl text-cyan-400 mb-6"></i>
-                <h4 class="text-xl font-bold mb-3 italic uppercase">03. Reward Claims</h4>
-                <p class="text-gray-500 text-sm">Airdrops for active participants and traders.</p>
-            </div>
+            <div class="text-center"><i class="fa-solid fa-key text-4xl text-cyan-400 mb-6"></i><h4 class="text-xl font-bold mb-3 italic uppercase">01. Testnet Key</h4><p class="text-gray-500 text-sm">Mint Testnet NFT as access key.</p></div>
+            <div class="text-center"><i class="fa-solid fa-rocket text-4xl text-cyan-400 mb-6"></i><h4 class="text-xl font-bold mb-3 italic uppercase">02. Mainnet Mint</h4><p class="text-gray-500 text-sm">Exclusive for Testnet NFT holders.</p></div>
+            <div class="text-center"><i class="fa-solid fa-coins text-4xl text-cyan-400 mb-6"></i><h4 class="text-xl font-bold mb-3 italic uppercase">03. Reward Claims</h4><p class="text-gray-500 text-sm">Airdrops for active participants.</p></div>
         </div>
     </section>
 
     <section class="max-w-5xl mx-auto px-6 py-24">
-        <h2 class="section-title italic mb-12 uppercase">Global <span class="highlight-text">Leaderboard</span></h2>
+        <h2 class="section-title italic mb-12 uppercase text-center">Global <span class="highlight-text">Leaderboard</span></h2>
         <div class="glass-card p-0 overflow-hidden border-white/5">
             <table class="w-full text-left border-collapse">
                 <thead>
@@ -147,14 +108,19 @@
                 </thead>
                 <tbody id="leaderboard-data">
                     <tr class="border-t border-white/5 hover:bg-white/[0.02] transition">
-                        <td class="p-6 font-black italic text-cyan-400">#1</td>
-                        <td class="p-6 font-mono text-xs">8LMW...K9p2</td>
-                        <td class="p-6 text-right font-bold">12,450</td>
+                        <td class="p-6 font-black italic text-yellow-400"><i class="fa-solid fa-medal text-xl"></i> #1</td>
+                        <td class="p-6 font-mono text-xs text-white">8LMW...K9p2</td>
+                        <td class="p-6 text-right font-bold text-white">12,450</td>
                     </tr>
                     <tr class="border-t border-white/5 hover:bg-white/[0.02] transition">
-                        <td class="p-6 font-black italic text-gray-500">#2</td>
-                        <td class="p-6 font-mono text-xs">DzsN...gRXE</td>
-                        <td class="p-6 text-right font-bold">9,200</td>
+                        <td class="p-6 font-black italic text-gray-300"><i class="fa-solid fa-medal text-xl"></i> #2</td>
+                        <td class="p-6 font-mono text-xs text-white">DzsN...gRXE</td>
+                        <td class="p-6 text-right font-bold text-white">9,200</td>
+                    </tr>
+                    <tr class="border-t border-white/5 hover:bg-white/[0.02] transition">
+                        <td class="p-6 font-black italic text-orange-400"><i class="fa-solid fa-medal text-xl"></i> #3</td>
+                        <td class="p-6 font-mono text-xs text-white">A7xP...m2Wq</td>
+                        <td class="p-6 text-right font-bold text-white">5,400</td>
                     </tr>
                 </tbody>
             </table>
@@ -164,47 +130,25 @@
     <main class="max-w-7xl mx-auto px-6 py-24">
         <h2 class="section-title italic mb-12">SYSTEM <span class="highlight-text">ROADMAP</span></h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="glass-card">
-                <div class="text-xs font-black text-cyan-400 mb-2 uppercase tracking-tighter">Phase 01</div>
-                <h3 class="text-2xl font-bold mb-3 text-white italic">Testnet NFT Mint</h3>
-                <p class="text-gray-400 text-sm">Mandatory to unlock Mainnet minting eligibility.</p>
-                <div class="btn-status status-stay-tuned">STAY TUNED</div>
-            </div>
-            <div class="glass-card opacity-60">
-                <div class="text-xs font-black text-gray-600 mb-2 uppercase tracking-tighter">Phase 02</div>
-                <h3 class="text-2xl font-bold mb-3 italic text-white">Mainnet Launch</h3>
-                <div class="btn-status status-locked">LOCKED 🔒</div>
-            </div>
-            <div class="glass-card opacity-60">
-                <div class="text-xs font-black text-gray-600 mb-2 uppercase tracking-tighter">Phase 03</div>
-                <h3 class="text-2xl font-bold mb-3 italic text-white">Trading & Volume</h3>
-                <div class="btn-status status-locked">LOCKED 🔒</div>
-            </div>
-            <div class="glass-card opacity-40">
-                <div class="text-xs font-black text-gray-600 mb-2 uppercase tracking-tighter">Phase 04</div>
-                <h3 class="text-2xl font-bold mb-3 italic text-white">Ecosystem Audit</h3>
-                <div class="btn-status status-locked">LOCKED 🔒</div>
-            </div>
-            <div class="glass-card opacity-40 border-dashed">
-                <div class="text-xs font-black text-gray-600 mb-2 uppercase tracking-tighter">Phase 05</div>
-                <h3 class="text-2xl font-bold mb-3 italic text-white">Reward Phase</h3>
-                <div class="btn-status status-locked">LOCKED 🔒</div>
-            </div>
+            <div class="glass-card"><div class="text-xs font-black text-cyan-400 mb-2 uppercase">Phase 01</div><h3 class="text-2xl font-bold mb-3 italic text-white">Testnet NFT Mint</h3><div class="btn-status status-stay-tuned">STAY TUNED</div></div>
+            <div class="glass-card opacity-60"><div class="text-xs font-black text-gray-600 mb-2 uppercase">Phase 02</div><h3 class="text-2xl font-bold mb-3 italic text-white">Mainnet Launch</h3><div class="btn-status status-locked">LOCKED 🔒</div></div>
+            <div class="glass-card opacity-60"><div class="text-xs font-black text-gray-600 mb-2 uppercase">Phase 03</div><h3 class="text-2xl font-bold mb-3 italic text-white">Trading & Volume</h3><div class="btn-status status-locked">LOCKED 🔒</div></div>
+            <div class="glass-card opacity-40"><div class="text-xs font-black text-gray-600 mb-2 uppercase">Phase 04</div><h3 class="text-2xl font-bold mb-3 italic text-white">Ecosystem Audit</h3><div class="btn-status status-locked">LOCKED 🔒</div></div>
+            <div class="glass-card opacity-40 border-dashed"><div class="text-xs font-black text-gray-600 mb-2 uppercase">Phase 05</div><h3 class="text-2xl font-bold mb-3 italic text-white">Reward Phase</h3><div class="btn-status status-locked">LOCKED 🔒</div></div>
         </div>
     </main>
 
     <footer class="py-20 border-t border-white/5 text-center bg-[#030303]">
         <div class="flex justify-center gap-10 mb-8 text-3xl">
-            <a href="https://x.com/GrokMultiverse" target="_blank" class="text-gray-500 hover:text-cyan-400 transition transform hover:scale-110"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="https://t.me/grokmultiverse" target="_blank" class="text-gray-500 hover:text-cyan-400 transition transform hover:scale-110"><i class="fa-brands fa-telegram"></i></a>
-            <a href="https://github.com/GrokMultiverse" target="_blank" class="text-gray-500 hover:text-cyan-400 transition transform hover:scale-110"><i class="fa-brands fa-github"></i></a>
+            <a href="https://x.com/GrokMultiverse" target="_blank" class="text-gray-500 hover:text-cyan-400 transition"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://t.me/grokmultiverse" target="_blank" class="text-gray-500 hover:text-cyan-400 transition"><i class="fa-brands fa-telegram"></i></a>
+            <a href="https://github.com/GrokMultiverse" target="_blank" class="text-gray-500 hover:text-cyan-400 transition"><i class="fa-brands fa-github"></i></a>
         </div>
         <p class="text-gray-600 text-[10px] tracking-[0.3em] uppercase">© 2025 GrokMultiverse | Solana Ecosystem</p>
     </footer>
 
     <script>
         const programId = new solanaWeb3.PublicKey("DzsNMUqVhpyj6rznbph4jjDKTshPaKdWVHYHDBETYgXE");
-        const network = "https://api.devnet.solana.com";
         let walletAddress = null;
         let userPoints = 0;
 
@@ -214,28 +158,45 @@
                     const response = await window.solana.connect();
                     walletAddress = response.publicKey.toString();
                     document.getElementById('connect-btn').innerText = walletAddress.slice(0, 4) + "..." + walletAddress.slice(-4);
-                    document.getElementById('referral-section').classList.remove('hidden');
-                    
-                    const refCode = walletAddress.slice(-6).toUpperCase();
-                    document.getElementById('referral-url').value = `https://grokmultiverse.github.io/Dashboard/?ref=${refCode}`;
-                    
                     loadUserData();
+                    checkUrlForReferral(); // Check referral logic on connect
                 } catch (err) { console.error(err); }
             } else { alert("Phantom Wallet not found."); }
         }
 
-        // Points Logic
         function loadUserData() {
             const savedPoints = localStorage.getItem('grok_points_' + walletAddress);
             userPoints = savedPoints ? parseInt(savedPoints) : 0;
             document.getElementById('user-points').innerText = userPoints.toLocaleString();
+            
+            const refCode = walletAddress.slice(-6).toUpperCase();
+            document.getElementById('referral-url').value = `https://grokmultiverse.github.io/Dashboard/?ref=${refCode}`;
+
+            if (localStorage.getItem(`task_reg_${walletAddress}`)) {
+                hideRegisterButtons();
+            }
             updateTaskButtons();
+        }
+
+        // UNLIMITED REFERRAL LOGIC
+        function checkUrlForReferral() {
+            if (!walletAddress) return;
+            const urlParams = new URLSearchParams(window.location.search);
+            const referralCode = urlParams.get('ref');
+            
+            // If user came through a link and hasn't triggered this session's credit
+            if (referralCode && !sessionStorage.getItem('ref_processed')) {
+                userPoints += 50; 
+                localStorage.setItem('grok_points_' + walletAddress, userPoints);
+                document.getElementById('user-points').innerText = userPoints.toLocaleString();
+                sessionStorage.setItem('ref_processed', 'true');
+                console.log("Referral points awarded for code:", referralCode);
+            }
         }
 
         function completeTask(task, reward, link) {
             if (!walletAddress) return alert("Connect Wallet first!");
             window.open(link, '_blank');
-            
             if (!localStorage.getItem(`task_${task}_${walletAddress}`)) {
                 userPoints += reward;
                 localStorage.setItem(`task_${task}_${walletAddress}`, 'true');
@@ -256,25 +217,24 @@
                 document.getElementById('task-telegram').className = "text-cyan-400 text-[10px] font-black";
                 document.getElementById('task-telegram').onclick = null;
             }
-            if (localStorage.getItem(`task_reg_${walletAddress}`)) {
-                document.getElementById('task-reg').innerText = "CLAIMED";
-                document.getElementById('task-reg').className = "text-cyan-400 text-[10px] font-black";
-                document.getElementById('task-reg').onclick = null;
-            }
+        }
+
+        function hideRegisterButtons() {
+            document.getElementById('hero-register-btn').classList.add('hidden');
+            document.getElementById('referral-section').classList.remove('hidden');
         }
 
         async function registerOnChain() {
             if (!walletAddress) return alert("Connect wallet first.");
-            // Actual smart contract call would go here
-            alert("Submitting Whitelist Registration to Program ID: DzsNMUq...");
-            
-            // For now, simulate claiming registration points
             if (!localStorage.getItem(`task_reg_${walletAddress}`)) {
                 userPoints += 200;
                 localStorage.setItem(`task_reg_${walletAddress}`, 'true');
                 localStorage.setItem('grok_points_' + walletAddress, userPoints);
                 document.getElementById('user-points').innerText = userPoints.toLocaleString();
-                updateTaskButtons();
+                alert("Whitelist Registration Successful! +200 Points");
+                hideRegisterButtons();
+            } else {
+                hideRegisterButtons();
             }
         }
 
@@ -286,5 +246,5 @@
         }
     </script>
 </body>
-    </html>
-    
+                                                                                                                                                                                </html>
+                
