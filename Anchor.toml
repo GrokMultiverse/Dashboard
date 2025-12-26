@@ -1,11 +1,12 @@
 [toolchain]
+anchor_version = "0.29.0"
 
 [features]
 seeds = false
 skip-lint = false
 
 [programs.devnet]
-grok_multiverse = "DzsNMUqVhpyj6rznbph4jjDKTshPaKdWVHYHDBETYgXE"
+grokmultiverse = "DzsNMUqVhpyj6rznbph4jjDKTshPaKdWVHYHDBETYgXE"
 
 [registry]
 url = "https://anchor.projectserum.com"
