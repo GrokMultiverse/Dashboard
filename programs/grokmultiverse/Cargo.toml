@@ -1,12 +1,20 @@
 [package]
-name = "GrokMultiverse"
+name = "grokmultiverse"
 version = "0.1.0"
 description = "Created with Solana Playground"
 edition = "2021"
 
 [lib]
 crate-type = ["cdylib", "lib"]
-name = "GrokMultiverse"
+name = "grokmultiverse"
+
+[features]
+no-entrypoint = []
+no-idl = []
+no-log-heap = []
+cpi = ["no-entrypoint"]
+default = []
 
 [dependencies]
 anchor-lang = "0.29.0"
+
