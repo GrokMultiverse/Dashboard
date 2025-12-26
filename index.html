@@ -3,216 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GrokMultiverse | Official Portal</title>
+    <title>GrokMultiverse | Premium Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
-        body { background-color: #050505; color: #ffffff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
-        .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 24px; padding: 2rem; transition: 0.3s; }
-        .btn-glow { background: linear-gradient(90deg, #00f2ff, #0072ff); color: #000; font-weight: 800; padding: 0.7rem 2rem; border-radius: 99px; box-shadow: 0 0 15px rgba(0, 242, 255, 0.3); cursor: pointer; }
-        .highlight-text { color: #00f2ff; text-shadow: 0 0 10px rgba(0, 242, 255, 0.3); }
-        
-        /* Rank Colors */
-        .bronze { color: #cd7f32; } .silver { color: #c0c0c0; }
-        .gold { color: #ffd700; } .diamond { color: #b9f2ff; filter: drop-shadow(0 0 5px #00f2ff); }
-
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
+        :root { --primary: #00f2ff; --secondary: #0072ff; --bg-dark: #020202; }
+        body { background-color: var(--bg-dark); color: #fff; font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; }
+        .bg-glow { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, rgba(0, 242, 255, 0.05) 0%, transparent 50%); pointer-events: none; z-index: -1; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; }
+        .btn-premium { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #000; font-weight: 700; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .btn-premium:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 242, 255, 0.3); }
+        .rank-float { animation: float 3s infinite ease-in-out; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
         .roadmap-badge { font-size: 9px; font-weight: 900; padding: 4px 12px; border-radius: 99px; text-transform: uppercase; }
         .badge-live { background: rgba(0, 242, 255, 0.1); color: #00f2ff; border: 1px solid #00f2ff; }
-        .badge-dev { background: rgba(255, 191, 0, 0.1); color: #ffbf00; border: 1px solid #ffbf00; }
         .badge-locked { background: rgba(255, 255, 255, 0.05); color: #555; border: 1px solid #333; }
-        
-        .hero-bg {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://raw.githubusercontent.com/GrokMultiverse/asset-s/d3ae39ad61ae3d9045bbcbe94b87cb04932c56ab/banner.jpg') center/cover;
-            z-index: -2; opacity: 0.4;
-        }
-        
-        /* Leaderboard styles */
-        .leaderboard-table { width: 100%; border-collapse: collapse; }
-        .leaderboard-table th, .leaderboard-table td { padding: 0.5rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .leaderboard-table th { font-size: 0.8rem; text-transform: uppercase; color: #888; }
-        .leaderboard-table td { font-size: 1rem; }
     </style>
 </head>
 <body>
-
-    <nav class="flex justify-between items-center p-6 max-w-7xl mx-auto sticky top-0 z-50 bg-[#050505]/90 backdrop-blur-md">
-        <div class="flex items-center gap-4">
-            <img src="https://raw.githubusercontent.com/GrokMultiverse/asset-s/d3ae39ad61ae3d9045bbcbe94b87cb04932c56ab/logo.png" alt="Logo" class="w-10 h-10 rounded-full border border-cyan-500/20">
-            <span class="text-xl font-black italic tracking-tighter uppercase">GROK MULTIVERSE</span>
+    <div class="bg-glow"></div>
+    <nav class="sticky top-0 z-50 px-6 py-4 border-b border-white/5 bg-black/60 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="https://raw.githubusercontent.com/GrokMultiverse/asset-s/d3ae39ad61ae3d9045bbcbe94b87cb04932c56ab/logo.png" class="w-10 h-10 rounded-xl border border-cyan-500/20">
+                <span class="text-xl font-bold tracking-tighter uppercase italic">Grok<span class="text-cyan-400">Multiverse</span></span>
+            </div>
+            <button id="walletBtn" onclick="connectWallet()" class="btn-premium px-6 py-2 rounded-full text-[10px] uppercase tracking-widest">Connect Portal</button>
         </div>
-        <button id="connectBtn" onclick="connectWallet()" class="btn-glow text-[10px] uppercase">Connect Wallet</button>
     </nav>
-
-    <div class="relative h-[60vh] flex items-center justify-center text-center px-6">
-        <div class="hero-bg"></div>
-        <div class="max-w-3xl">
-            <h1 class="text-6xl md:text-8xl font-black italic uppercase mb-6 leading-none">The Portal</h1>
-            
-            <div id="statsBox" class="hidden glass-card border-cyan-500/40 mt-6">
-                <div class="flex items-center justify-center gap-3 mb-4">
-                    <span id="rankIcon"></span>
-                    <span id="walletAddr" class="text-xs font-mono text-cyan-400"></span>
+        <main class="max-w-7xl mx-auto px-6 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+            <div class="lg:col-span-2 glass p-8 flex flex-col md:flex-row items-center gap-8">
+                <div class="relative">
+                    <div class="w-24 h-24 rounded-full border-2 border-cyan-500/30 flex items-center justify-center bg-cyan-500/5">
+                        <i id="userIcon" class="fa-solid fa-user-astronaut text-4xl text-cyan-400 rank-float"></i>
+                    </div>
+                    <div id="badgeLabel" class="absolute -bottom-2 -right-2 bg-cyan-500 text-black text-[10px] font-bold px-2 py-1 rounded-md">NEWBIE</div>
                 </div>
-                <div class="grid grid-cols-2 gap-8">
-                    <div><p class="text-[10px] uppercase text-gray-500 mb-1">On-Chain Points</p><p id="totalPoints" class="text-3xl font-black italic">0</p></div>
-                    <div><p class="text-[10px] uppercase text-gray-500 mb-1">Total Refers</p><p id="referCount" class="text-3xl font-black italic">0</p></div>
+                <div>
+                    <h2 id="addrDisplay" class="text-gray-400 font-mono text-xs mb-2 uppercase tracking-widest">Wallet Not Connected</h2>
+                    <div class="flex gap-6 items-center">
+                        <div><span class="text-4xl font-bold italic" id="ptsDisplay">0</span> <span class="text-cyan-400 text-sm font-bold">PTS</span></div>
+                        <div class="h-8 w-[1px] bg-white/10"></div>
+                        <div><span class="text-4xl font-bold italic" id="refDisplay">0</span> <span class="text-gray-500 text-sm">REFERS</span></div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <section class="max-w-4xl mx-auto px-6 py-20 text-center">
-        <h2 class="text-3xl font-black italic uppercase mb-6">About <span class="highlight-text">GrokMultiverse</span></h2>
-        <p class="text-gray-400 leading-relaxed text-sm md:text-base font-light">
-            GrokMultiverse is the first AI-driven engagement layer on Solana. By participating in our Devnet tasks, you secure a verified status within our ecosystem, unlocking access to the official Mainnet multiverse and $GROK rewards.
-        </p>
-    </section>
-
-    <section class="max-w-6xl mx-auto px-6 py-12">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div class="glass-card text-center border-b-2 border-cyan-500">
-                <i class="fa-solid fa-plug text-cyan-400 mb-4 text-2xl"></i>
-                <h4 class="text-xs font-black uppercase mb-1">Wallet Signup</h4>
-                <p class="text-lg font-bold mb-4">200 PTS</p>
-                <button class="w-full bg-white/5 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest">Completed</button>
-            </div>
-            <div class="glass-card text-center">
-                <i class="fa-brands fa-x-twitter mb-4 text-2xl"></i>
-                <h4 class="text-xs font-black uppercase mb-1">Follow On X</h4>
-                <p class="text-lg font-bold mb-4">100 PTS</p>
-                <a href="https://x.com/GrokMultiverse" target="_blank" class="block w-full bg-cyan-500/10 text-cyan-400 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest">Verify X</a>
-            </div>
-            <div class="glass-card text-center">
-                <i class="fa-brands fa-telegram text-blue-400 mb-4 text-2xl"></i>
-                <h4 class="text-xs font-black uppercase mb-1">Join Telegram</h4>
-                <p class="text-lg font-bold mb-4">100 PTS</p>
-                <a href="https://t.me/grokmultiverse" target="_blank" class="block w-full bg-cyan-500/10 text-cyan-400 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest">Verify TG</a>
-            </div>
-            <div class="glass-card text-center">
-                <i class="fa-solid fa-share-nodes text-purple-500 mb-4 text-2xl"></i>
-                <h4 class="text-xs font-black uppercase mb-1">Refer Friend</h4>
-                <p class="text-lg font-bold mb-4">50 PTS</p>
-                <button onclick="shareReferral()" class="w-full bg-purple-500/10 text-purple-400 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest">Share Link</button>
+            <div class="glass p-8 bg-gradient-to-br from-cyan-500/10 to-transparent">
+                <h3 class="text-xs font-bold text-cyan-400 mb-4 uppercase tracking-widest">Multiverse Rank Status</h3>
+                <div class="flex justify-between gap-2 text-center text-[20px] mb-4">
+                    <i class="fa-solid fa-gem text-cyan-400" title="Diamond: 10 Ref"></i>
+                    <i class="fa-solid fa-medal text-orange-400" title="Bronze: 100 Ref"></i>
+                    <i class="fa-solid fa-medal text-gray-400" title="Silver: 500 Ref"></i>
+                    <i class="fa-solid fa-medal text-yellow-500" title="Gold: 1k Ref"></i>
+                </div>
+                <p class="text-[10px] text-gray-500 italic">Earn points to rank up and unlock exclusive airdrop tiers.</p>
             </div>
         </div>
-    </section>
 
-    <section class="max-w-5xl mx-auto px-6 py-10 bg-white/5 rounded-[40px] mb-20">
-        <h3 class="text-center font-black italic uppercase mb-8 text-sm">Referral Rank System</h3>
-        <div class="grid grid-cols-4 gap-4 text-center">
-            <div><i class="fa-solid fa-medal bronze text-3xl"></i><p class="text-[9px] mt-2 font-bold uppercase">100 Ref<br>Bronze</p></div>
-            <div><i class="fa-solid fa-medal silver text-3xl"></i><p class="text-[9px] mt-2 font-bold uppercase">500 Ref<br>Silver</p></div>
-            <div><i class="fa-solid fa-medal gold text-3xl"></i><p class="text-[9px] mt-2 font-bold uppercase">1k Ref<br>Gold</p></div>
-            <div><i class="fa-solid fa-gem diamond text-3xl"></i><p class="text-[9px] mt-2 font-bold uppercase">10k Ref<br>Diamond</p></div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            <div class="glass p-6 border-b-2 border-cyan-500">
+                <i class="fa-solid fa-link text-cyan-400 mb-4"></i>
+                <h4 class="font-bold text-xs uppercase mb-1">Signup</h4>
+                <p class="text-xl font-bold mb-4">+200 PTS</p>
+                <button class="w-full bg-white/5 py-2 rounded text-[10px] font-bold uppercase">Completed</button>
+            </div>
+            <div class="glass p-6">
+                <i class="fa-brands fa-x-twitter mb-4"></i>
+                <h4 class="font-bold text-xs uppercase mb-1">Verify X</h4>
+                <p class="text-xl font-bold mb-4">+100 PTS</p>
+                <a href="https://x.com/GrokMultiverse" target="_blank" class="block text-center bg-cyan-500/10 text-cyan-400 py-2 rounded text-[10px] font-bold uppercase">Verify</a>
+            </div>
+            <div class="glass p-6">
+                <i class="fa-solid fa-users-viewfinder text-purple-400 mb-4"></i>
+                <h4 class="font-bold text-xs uppercase mb-1">Referral</h4>
+                <p class="text-xl font-bold mb-4">+50 PTS</p>
+                <button onclick="shareRef()" class="w-full bg-purple-500/10 text-purple-400 py-2 rounded text-[10px] font-bold uppercase">Share Link</button>
+            </div>
+            <div class="glass p-6 bg-yellow-500/5">
+                <i class="fa-solid fa-gas-pump text-yellow-500 mb-4"></i>
+                <h4 class="font-bold text-xs uppercase mb-1">Gas Faucet</h4>
+                <p class="text-[10px] text-gray-500 mb-4">Need SOL? Get from faucet.</p>
+                <a href="https://faucet.solana.com/" target="_blank" class="block text-center border border-yellow-500/20 py-2 rounded text-[10px] font-bold uppercase">SOL Faucet</a>
+            </div>
+        </div>
+
+        <div class="glass p-8 overflow-hidden">
+            <h3 class="text-xl font-bold mb-6 italic flex items-center gap-3"><i class="fa-solid fa-trophy text-yellow-500"></i> LEADERBOARD</h3>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm">
+                    <thead><tr class="text-gray-500 text-[10px] uppercase border-b border-white/5"><th class="pb-4">Rank</th><th class="pb-4">Wallet</th><th class="pb-4">Points</th><th class="pb-4">Badge</th></tr></thead>
+                    <tbody>
+                        <tr class="border-b border-white/5"><td class="py-4 text-cyan-400 font-bold">#1</td><td class="py-4 font-mono">G8xP...v9mN</td><td class="py-4 font-bold">42,500</td><td><span class="text-[9px] px-2 py-1 bg-yellow-500/10 text-yellow-500 rounded">GOLD</span></td></tr>
+                        <tr class="border-b border-white/5"><td class="py-4 text-gray-400 font-bold">#2</td><td class="py-4 font-mono">3fKm...r2pL</td><td class="py-4 font-bold">21,200</td><td><span class="text-[9px] px-2 py-1 bg-gray-400/10 text-gray-400 rounded">SILVER</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </main>
+            <section class="max-w-7xl mx-auto px-6 py-20 border-t border-white/5">
+        <h2 class="text-center text-3xl font-black italic uppercase mb-12">Project <span class="text-cyan-400">Roadmap</span></h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="glass p-6"><span class="roadmap-badge badge-live">Phase 01</span><h4 class="mt-4 font-bold uppercase italic">Points Farming</h4><p class="text-gray-500 text-xs mt-1">Live on Devnet.</p></div>
+            <div class="glass p-6 opacity-60"><span class="roadmap-badge badge-locked">Phase 02</span><h4 class="mt-4 font-bold uppercase italic">Testnet NFT</h4><p class="text-gray-500 text-xs mt-1">Soulbound verification.</p></div>
+            <div class="glass p-6 opacity-60"><span class="roadmap-badge badge-locked">Phase 03</span><h4 class="mt-4 font-bold uppercase italic">Mainnet Launch</h4><p class="text-gray-500 text-xs mt-1">Token Airdrop distribution.</p></div>
         </div>
     </section>
 
-    <!-- Point Leaderboard Section -->
-    <section class="max-w-5xl mx-auto px-6 py-10 bg-white/5 rounded-[40px] mb-20">
-        <h3 class="text-center font-black italic uppercase mb-8 text-sm">Point Leaderboard (Top 10)</h3>
-        <table class="leaderboard-table">
-            <thead>
-                <tr>
-                    <th>Rank</th>
-                    <th>Wallet</th>
-                    <th>Points</th>
-                    <th>Refers</th>
-                </tr>
-            </thead>
-            <tbody id="leaderboardBody">
-                <!-- Simulated data - replace with real data later -->
-                <tr>
-                    <td>1</td>
-                    <td>AbCd...XyZ</td>
-                    <td>5,200</td>
-                    <td>100</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>EfGh...IjK</td>
-                    <td>4,800</td>
-                    <td>90</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>LmNo...PqR</td>
-                    <td>4,500</td>
-                    <td>85</td>
-                </tr>
-                <!-- Add more rows as needed -->
-                <tr>
-                    <td>...</td>
-                    <td>...</td>
-                    <td>...</td>
-                    <td>...</td>
-                </tr>
-            </tbody>
-        </table>
-        <p class="text-center text-xs text-gray-500 mt-4">Leaderboard updates every hour • Your rank will appear after wallet connect</p>
-    </section>
-
-    <section class="max-w-7xl mx-auto px-6 py-20 border-t border-white/5">
-        <h2 class="text-center text-4xl font-black italic uppercase mb-12">Roadmap <span class="highlight-text">Evolution</span></h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="glass-card"><span class="roadmap-badge badge-live">Phase 01</span><h4 class="mt-4 font-black italic uppercase">Points Farming</h4><p class="text-gray-500 text-xs mt-2">Engagement system live on Devnet.</p></div>
-            <div class="glass-card"><span class="roadmap-badge badge-dev">Phase 02</span><h4 class="mt-4 font-black italic uppercase">Testnet NFT</h4><p class="text-gray-500 text-xs mt-2">Verified badge minting under development.</p></div>
-            <div class="glass-card opacity-50"><span class="roadmap-badge badge-locked">Phase 03</span><h4 class="mt-4 font-black italic uppercase">Mainnet Mint</h4><p class="text-gray-600 text-xs mt-2">Exclusive access to official collection.</p></div>
-            <div class="glass-card opacity-50"><span class="roadmap-badge badge-locked">Phase 04</span><h4 class="mt-4 font-black italic uppercase">Magic Eden</h4><p class="text-gray-600 text-xs mt-2">Trading volume rewards & secondary listing.</p></div>
-            <div class="glass-card opacity-50"><span class="roadmap-badge badge-locked">Phase 05</span><h4 class="mt-4 font-black italic uppercase">Tokenomics</h4><p class="text-gray-600 text-xs mt-2">$GROK utility and supply metrics reveal.</p></div>
-            <div class="glass-card opacity-50"><span class="roadmap-badge badge-locked">Phase 06</span><h4 class="mt-4 font-black italic uppercase">Airdrop</h4><p class="text-gray-600 text-xs mt-2">Final distribution for active pioneers.</p></div>
+    <footer class="py-12 border-t border-white/5 text-center">
+        <div class="flex justify-center gap-8 mb-4 text-gray-500">
+            <a href="https://x.com/GrokMultiverse" target="_blank"><i class="fa-brands fa-x-twitter hover:text-cyan-400 transition"></i></a>
+            <a href="https://t.me/grokmultiverse" target="_blank"><i class="fa-brands fa-telegram hover:text-cyan-400 transition"></i></a>
         </div>
-    </section>
+        <p class="text-[9px] text-gray-700 tracking-[0.4em] uppercase">© 2025 GrokMultiverse | Powered by Solana</p>
+    </footer>
 
     <script>
-        let walletAddr = null;
-        let refers = 0; // Simulated. Will connect to Program ID via IDL later.
-
+        let wallet = null;
         async function connectWallet() {
             try {
                 const provider = window.phantom?.solana || window.solflare;
                 if (provider) {
                     const resp = await provider.connect();
-                    walletAddr = resp.publicKey.toString();
-                    document.getElementById('statsBox').classList.remove('hidden');
-                    document.getElementById('walletAddr').innerText = walletAddr.substring(0,6) + "..." + walletAddr.slice(-6);
-                    document.getElementById('connectBtn').innerText = "CONNECTED";
-                    updateStats();
+                    wallet = resp.publicKey.toString();
+                    document.getElementById('addrDisplay').innerText = wallet.substring(0,8) + "..." + wallet.slice(-8);
+                    document.getElementById('walletBtn').innerText = "CONNECTED";
+                    document.getElementById('ptsDisplay').innerText = "200";
+                    document.getElementById('badgeLabel').innerText = "PIONEER";
                 } else {
                     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-                    if (isMobile) {
-                        window.location.href = "https://phantom.app/ul/browse/" + window.location.href;
-                    } else { alert("Please install Phantom/Solflare."); }
+                    if (isMobile) { window.location.href = "https://phantom.app/ul/browse/" + window.location.href; }
+                    else { alert("Please install Phantom/Solflare!"); }
                 }
-            } catch (err) { console.log(err); }
+            } catch (err) { console.error(err); }
         }
-
-        function updateStats() {
-            let points = 200 + (refers * 50); // Wallet (200) + Referrals
-            document.getElementById('totalPoints').innerText = points.toLocaleString();
-            document.getElementById('referCount').innerText = refers;
-            
-            let rank = document.getElementById('rankIcon');
-            rank.className = "fa-solid text-2xl ";
-            if(refers >= 10000) rank.classList.add('fa-gem', 'diamond');
-            else if(refers >= 1000) rank.classList.add('fa-medal', 'gold');
-            else if(refers >= 500) rank.classList.add('fa-medal', 'silver');
-            else if(refers >= 100) rank.classList.add('fa-medal', 'bronze');
-            else rank.classList.add('fa-user', 'text-gray-600');
-        }
-
-        function shareReferral() {
-            if(!walletAddr) return alert("Connect Wallet!");
-            const link = window.location.origin + "?ref=" + walletAddr;
-            if (navigator.share) {
-                navigator.share({ title: 'GrokMultiverse', url: link });
-            } else {
-                navigator.clipboard.writeText(link);
-                alert("Referral link copied to clipboard!");
-            }
+        function shareRef() {
+            if(!wallet) return alert("Connect Wallet!");
+            const refLink = window.location.origin + "?ref=" + wallet;
+            navigator.clipboard.writeText(refLink);
+            alert("Referral link copied!");
         }
     </script>
 </body>
-                        </html>
+</html>
