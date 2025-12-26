@@ -28,6 +28,12 @@
             background: url('https://raw.githubusercontent.com/GrokMultiverse/asset-s/d3ae39ad61ae3d9045bbcbe94b87cb04932c56ab/banner.jpg') center/cover;
             z-index: -2; opacity: 0.4;
         }
+        
+        /* Leaderboard styles */
+        .leaderboard-table { width: 100%; border-collapse: collapse; }
+        .leaderboard-table th, .leaderboard-table td { padding: 0.5rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .leaderboard-table th { font-size: 0.8rem; text-transform: uppercase; color: #888; }
+        .leaderboard-table td { font-size: 1rem; }
     </style>
 </head>
 <body>
@@ -97,11 +103,55 @@
     <section class="max-w-5xl mx-auto px-6 py-10 bg-white/5 rounded-[40px] mb-20">
         <h3 class="text-center font-black italic uppercase mb-8 text-sm">Referral Rank System</h3>
         <div class="grid grid-cols-4 gap-4 text-center">
-            <div><i class="fa-solid fa-gem diamond text-3xl"></i><p class="text-[9px] mt-2 font-bold uppercase">10 Ref<br>Diamond</p></div>
             <div><i class="fa-solid fa-medal bronze text-3xl"></i><p class="text-[9px] mt-2 font-bold uppercase">100 Ref<br>Bronze</p></div>
             <div><i class="fa-solid fa-medal silver text-3xl"></i><p class="text-[9px] mt-2 font-bold uppercase">500 Ref<br>Silver</p></div>
             <div><i class="fa-solid fa-medal gold text-3xl"></i><p class="text-[9px] mt-2 font-bold uppercase">1k Ref<br>Gold</p></div>
+            <div><i class="fa-solid fa-gem diamond text-3xl"></i><p class="text-[9px] mt-2 font-bold uppercase">10k Ref<br>Diamond</p></div>
         </div>
+    </section>
+
+    <!-- Point Leaderboard Section -->
+    <section class="max-w-5xl mx-auto px-6 py-10 bg-white/5 rounded-[40px] mb-20">
+        <h3 class="text-center font-black italic uppercase mb-8 text-sm">Point Leaderboard (Top 10)</h3>
+        <table class="leaderboard-table">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Wallet</th>
+                    <th>Points</th>
+                    <th>Refers</th>
+                </tr>
+            </thead>
+            <tbody id="leaderboardBody">
+                <!-- Simulated data - replace with real data later -->
+                <tr>
+                    <td>1</td>
+                    <td>AbCd...XyZ</td>
+                    <td>5,200</td>
+                    <td>100</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>EfGh...IjK</td>
+                    <td>4,800</td>
+                    <td>90</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>LmNo...PqR</td>
+                    <td>4,500</td>
+                    <td>85</td>
+                </tr>
+                <!-- Add more rows as needed -->
+                <tr>
+                    <td>...</td>
+                    <td>...</td>
+                    <td>...</td>
+                    <td>...</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="text-center text-xs text-gray-500 mt-4">Leaderboard updates every hour • Your rank will appear after wallet connect</p>
     </section>
 
     <section class="max-w-7xl mx-auto px-6 py-20 border-t border-white/5">
@@ -146,10 +196,10 @@
             
             let rank = document.getElementById('rankIcon');
             rank.className = "fa-solid text-2xl ";
-            if(refers >= 1000) rank.classList.add('fa-medal', 'gold');
+            if(refers >= 10000) rank.classList.add('fa-gem', 'diamond');
+            else if(refers >= 1000) rank.classList.add('fa-medal', 'gold');
             else if(refers >= 500) rank.classList.add('fa-medal', 'silver');
             else if(refers >= 100) rank.classList.add('fa-medal', 'bronze');
-            else if(refers >= 10) rank.classList.add('fa-gem', 'diamond');
             else rank.classList.add('fa-user', 'text-gray-600');
         }
 
@@ -160,9 +210,9 @@
                 navigator.share({ title: 'GrokMultiverse', url: link });
             } else {
                 navigator.clipboard.writeText(link);
-                alert("Copied!");
+                alert("Referral link copied to clipboard!");
             }
         }
     </script>
 </body>
-</html>
+                        </html>
